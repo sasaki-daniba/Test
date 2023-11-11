@@ -1,0 +1,39 @@
+コミットする先の確認方法「git remote -v」
+
+PCへGithubアカウントの登録:
+使用するPCのgitのconfigにgithubのアカウントを追加する。
+git config --global user.name "danibasters6736@gmail.com"
+git config --global user.email "danibasters6736@gmail.com"
+git config --list
+
+sshの登録:
+事前にPC毎にssh-keyを発行する必要がある。（何故かVSCodeにログインするだけで解決）
+確認「ls ~/.ssh（PC側にsshがあるか）」(sshがある場合はok)
+「ssh -T git@github.com（パスワード要求がされる）」
+登録「ssh-keygen -t "任意のID(今回はid_ed25519)" -C "danibasters6736@gmail.com"
+sshキーを追加するため、「clip < ~/.ssh/id_ed25519.pub」でコピー
+
+Github側の設定:
+1.まずnew repositoryで自由にrepositorynameとpublic privateを決めて作成をする
+2.この操作は使用するファイル上で行うため、VScodeのターミナルを開き操作をする。
+PCファイルで、自由なrepositorynameのファイルを作成し、コマンドラインでは
+「or create~command line」の内容を全て入力する。
+remoteするファイルの確認「git remote -v」
+3.VScodeで自前のアカウントにログインし認証を行うとある程度自動で行ってくれる。
+大体はSource Controlで操作してる
+同期するときは毎回パスワード要求をされる。
+
+ローカルリポジトリにコミットする。
+変更したファイルが表示され、変更したいファイルの+を押すことで、ステージング(コミットしたいファイルを指定すること)が出来る。次に同期を押すことでgithubに同期される。この際パスワードが要求される。
+
+
+ローカルリポジトリ	ローカル（自分のPC）にあるリポジトリ
+リモートリポジトリ	サーバー（ウェブ）上にあるリポジトリ ※GitHubもリモートリポジトリの1つ
+コミット	リポジトリへファイルを追加したり変更履歴を保存したりすること
+プッシュ	ローカルリポジトリのデータをリモートリポジトリへ反映（アップロード）させること
+プル	リモートリポジトリをローカルリポジトリへ反映（ダウンロード）させること
+|||||||||||||||
+Repository name:リポジトリの名前（任意）を入力して下さい。
+Public/Private:リポジトリを公開したい場合は「Public」、非公開にしたい場合は「Private」を選びます。
+Initialize this repository with ：他の人がリポジトリへアクセスした際の参照用として「READ ME」ファイルを設置したい場合は、チェックを入れます。
+https://www.kagoya.jp/howto/rentalserver/webtrend/vscode/
